@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.Valid;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 
 @Controller
 public class UserController {
@@ -20,9 +21,10 @@ public class UserController {
     private UserRepository userRepository;
 
     @RequestMapping("/user/list")
-    public String home(Model model)
+    public String home(Model model,HttpServletRequest request)
     {
         model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("remoteUser", request.getRemoteUser());
         return "user/list";
     }
 
