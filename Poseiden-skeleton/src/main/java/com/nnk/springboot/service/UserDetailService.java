@@ -14,6 +14,14 @@ public class UserDetailService implements UserDetailsService{
 	@Autowired
     private UserRepository userRepository;
 
+	/**
+     * Loads a user by username for authentication.
+     * If no user is found, an exception is thrown.
+     *
+     * @param username the username identifying the user
+     * @return UserDetails object with authentication information
+     * @throws UsernameNotFoundException if user is not found in the database
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
     	User user = userRepository.findByUsername(username);

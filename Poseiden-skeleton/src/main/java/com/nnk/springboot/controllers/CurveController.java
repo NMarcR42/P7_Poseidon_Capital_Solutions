@@ -15,12 +15,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
+/**
+ * Controller for handling CRUD operations for this entity.
+ * Provides endpoints for listing, adding, updating, and deleting bids.
+ */
 @Controller
 public class CurveController {
 
 	@Autowired
     private CurvePointRepository curvePointRepository;
 	
+	/**
+     * Display all curvepoint lists.
+     *
+     * @param model model to add attributes
+     * @param request HTTP request to get the logged user
+     * @return the curvepoint list view
+     */
     @RequestMapping("/curvePoint/list")
     public String home(Model model, HttpServletRequest request)
     {

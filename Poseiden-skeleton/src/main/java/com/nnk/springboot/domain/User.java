@@ -62,6 +62,12 @@ public class User implements UserDetails{
 	public void setRole(String role) {
 		this.role = role;
 	}
+	/**
+	 * Returns the authorities granted to the user and allow spring security to identify user role.
+	 * The role is prefixed with "ROLE_" if not already.
+	 *
+	 * @return a collection of granted authorities
+	 */
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> authorities = new ArrayList<>();	
@@ -76,24 +82,52 @@ public class User implements UserDetails{
 	    
 	    return authorities;
 	}
+	
+	/**
+	 * Indicates whether the user's account has expired.
+	 * Returning true means the account is always valid (non-expired).
+	 *
+	 * @return true since this implementation does not handle expiration
+	 */
 	@Override
 	public boolean isAccountNonExpired() {
 
 		return true;
 	}
+	
+	/**
+	 * Indicates whether the user is locked or unlocked.
+	 * Returning true means the account is never locked.
+	 *
+	 * @return true since this implementation does not handle locking
+	 */
 	@Override
 	public boolean isAccountNonLocked() {
 
 		return true;
 	}
+	
+	/**
+	 * Indicates whether the user's credentials (password) have expired.
+	 * Returning true means the credentials are always valid.
+	 *
+	 * @return true since this implementation does not handle credential expiration
+	 */
 	@Override
 	public boolean isCredentialsNonExpired() {
 
 		return true;
 	}
+	
+	/**
+	 * Indicates whether the user is enabled or disabled.
+	 * Returning true means the account is always enabled.
+	 *
+	 * @return true since this implementation does not handle enabling/disabling
+	 */
 	@Override
-	public boolean isEnabled() { // user actif ou non
-		// TODO Auto-generated method stub
+	public boolean isEnabled() { 
+
 		return true;
 	}
 

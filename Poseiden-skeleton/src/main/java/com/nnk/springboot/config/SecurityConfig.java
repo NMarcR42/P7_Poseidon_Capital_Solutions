@@ -13,10 +13,21 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.nnk.springboot.service.UserDetailService;
 
+/**
+ * Security configuration class.
+ * Defines authentication (userDetailsService + password encoder)
+ * and authorization rules (role-based access).
+ */
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig{
+	
+	/**
+     * Configure password encoding with BCrypt.
+     *
+     * @return the password encoder
+     */
 	@Autowired
     private UserDetailService userDetailService;
 
@@ -25,6 +36,14 @@ public class SecurityConfig{
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Configure the authentication manager with user details service
+     * and password encoder.
+     *
+     * @param http HttpSecurity object
+     * @return the authentication manager
+     * @throws Exception if configuration fails
+     */
     @Bean
     public AuthenticationManager authManager(HttpSecurity http) throws Exception {
         return http.getSharedObject(AuthenticationManagerBuilder.class)
@@ -34,12 +53,19 @@ public class SecurityConfig{
                 .build();
     }
 
+    /**
+     * Configure HTTP security: login, logout, and authorization rules.
+     *
+     * @param http HttpSecurity object
+     * @return the security filter chain
+     * @throws Exception if configuration fails
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/app/login", "/css/**", "/js/**", "/images/**").permitAll()
-                .requestMatchers("/user/**", "/admin/**").hasRole("ADMIN") // réservé aux admins
+                .requestMatchers("/user/**", "/admin/**").hasRole("ADMIN") // only for admin role
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form

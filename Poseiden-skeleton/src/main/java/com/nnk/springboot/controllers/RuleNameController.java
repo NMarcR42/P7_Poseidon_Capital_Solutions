@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
 
+/**
+ * Controller for handling CRUD operations for this entity.
+ * Provides endpoints for listing, adding, updating, and deleting bids.
+ */
 @Controller
 public class RuleNameController {
 

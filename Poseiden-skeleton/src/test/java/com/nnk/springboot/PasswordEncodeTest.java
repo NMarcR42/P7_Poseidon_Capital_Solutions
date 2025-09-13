@@ -7,18 +7,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
- * Created by Khang Nguyen.
- * Email: khang.nguyen@banvien.com
- * Date: 09/03/2019
- * Time: 11:26 AM
+ * Unit test for password encoding with BCryptPasswordEncoder.
+ * This class demonstrates how a plain text password is hashed without regex pattern 
+ * using BCrypt algorithm to ensure security in database storage.
  */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class PasswordEncodeTest {
+	/**
+     * Test method for encoding a plain text password.
+     * Prints the encoded hash in console.
+     */
     @Test
     public void testPassword() {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String pw = encoder.encode("123456");
+        String pw = encoder.encode("12345678");
         System.out.println("[ "+ pw + " ]");
     }
 }

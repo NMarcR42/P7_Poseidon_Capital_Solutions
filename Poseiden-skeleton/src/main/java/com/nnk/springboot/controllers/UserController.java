@@ -15,11 +15,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
+/**
+ * Controller for handling CRUD operations for this entity.
+ * Provides endpoints for listing, adding, updating, and deleting bids.
+ */
 @Controller
 public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * Display all curvepoint lists.
+     *
+     * @param model model to add attributes
+     * @param request HTTP request to get the logged user
+     * @return the user list view
+     */
     @RequestMapping("/user/list")
     public String home(Model model,HttpServletRequest request)
     {
