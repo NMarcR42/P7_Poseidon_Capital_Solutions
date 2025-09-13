@@ -1,6 +1,17 @@
 # spring-boot
-## Technical:
+##Description
+This project is a demo Spring Boot application designed to practice and demonstrate CRUD operations, authentication and authorization using Spring Security, as well as best practices in API security and backend development.
 
+##features
+-CRUD operations on entities (BidList, Trade, CurvePoint, Rating, RuleName, User)
+-Authentication with Spring Security (session-based login)
+-Authorization with roles (USER and ADMIN)
+-Password encryption with BCrypt
+-Validation of user inputs (JSR-303 annotations)
+-Error handling and custom error page
+-Thymeleaf templates with Bootstrap for UI
+
+## Technical:
 1. Spring Boot 3.1.0
 2. Java 17
 3. Thymeleaf
@@ -25,3 +36,4 @@
 ## Security
 1. Create user service to load user from  database and place in package com.nnk.springboot.services
 2. Add configuration class and place in package com.nnk.springboot.config
+
